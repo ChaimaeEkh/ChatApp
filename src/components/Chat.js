@@ -6,11 +6,17 @@ import './Chat.css'
 export default function Chat(props) {
     const {room} = props;
     const [newMessage, setNewMessages] = useState("");
+    const [messages, setMessages] = useState([]);
+
     const messagesRef = collection(db, "messages");
     useEffect(() => {
         const queryMessages = query(messagesRef, where("room", "==", room));
         onSnapshot(queryMessages, (snapshot) => {
-            
+            let messages = [];  
+            snapshot.forEach((doc) => {
+                messages.push({...doc.data(), id: doc.id});
+            });
+            setMessages(messages);
         });
     }, []);
 
@@ -29,6 +35,11 @@ export default function Chat(props) {
         console.log(newMessage);    };
   return (
     <div className="chat-app">
+        <div>{messages.map((message) => (
+            <h1>{message.text}</h1>
+        ))}
+        </div>
+        
         <form onSubmit={handleSubmit} className="new-message-form">
             <input onChange={(e) => setNewMessages(e.target.value)}
             value={newMessage} className="new-message-input" placeholder="Type your message here" />
