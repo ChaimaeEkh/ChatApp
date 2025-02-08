@@ -19,7 +19,7 @@ export default function App() {
   return (
     <div className="App">
       {room ? (
-        <Chat />
+        <Chat room={room} />
       ) : (
         <div className="room">
           <label>Enter Room Name :</label>
