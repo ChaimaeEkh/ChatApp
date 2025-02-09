@@ -1,5 +1,6 @@
-import {auth, provider} from "../firebase-config";
+import {auth, provider, db} from "../firebase-config";
 import {signInWithPopup} from "firebase/auth";
+import { setDoc, doc, serverTimestamp } from "firebase/firestore";
 import {MessageCircle} from 'lucide-react';
 import Cookies from 'universal-cookie';
 import './Auth.css';
@@ -11,6 +12,16 @@ export default function Auth(props){
             const result = await signInWithPopup(auth, provider);
             cookies.set("auth-token", result.user.refreshToken);
             setIsAuth(true);
+
+            //
+            const userRef = doc(db, "users", result.user.uid);
+            await setDoc(userRef, {
+                uid: result.user.uid,
+                name: result.user.displayName,
+                email: result.user.email,
+                photoURL: result.user.photoURL,
+                lastSeen: serverTimestamp(),
+            }, { merge: true });
         } catch (err){
             console.log(err)
         }

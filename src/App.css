@@ -246,3 +246,116 @@
     text-align: left;
     animation: fadeIn 0.4s ease-out;
 }
+
+.sign-out {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+  }
+  
+  .sign-out button {
+    padding: 8px 16px;
+    background-color: #ffffff;
+    color: #4c6fff;
+    border: 1px solid #4c6fff;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .sign-out button:hover {
+    background-color: #4c6fff;
+    color: #ffffff;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(76, 111, 255, 0.2);
+  }
+  
+  .sign-out button:active {
+    transform: translateY(0);
+  }
+  
+  .room {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+    background-color: #f8faff;
+    gap: 16px;
+  }
+  
+  .room label {
+    font-size: 1.125rem;
+    color: #1a1f36;
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+  
+  .room input {
+    width: 100%;
+    max-width: 320px;
+    padding: 12px 16px;
+    border: 1px solid #e1e5f2;
+    border-radius: 12px;
+    font-size: 1rem;
+    background-color: #ffffff;
+    transition: all 0.2s ease;
+  }
+  
+  .room input:focus {
+    outline: none;
+    border-color: #4c6fff;
+    box-shadow: 0 0 0 2px rgba(76, 111, 255, 0.1);
+  }
+  
+  .room button {
+    padding: 12px 24px;
+    background-color: #4c6fff;
+    color: #ffffff;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 100%;
+    max-width: 320px;
+  }
+  
+  .room button:hover {
+    background-color: #3b5cff;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px rgba(76, 111, 255, 0.2);
+  }
+  
+  .room button:active {
+    transform: translateY(0);
+  }
+  
+  @media (max-width: 768px) {
+    .sign-out {
+      top: 12px;
+      right: 12px;
+    }
+  
+    .sign-out button {
+      padding: 6px 12px;
+      font-size: 0.8125rem;
+    }
+  
+    .room {
+      padding: 16px;
+    }
+  
+    .room input,
+    .room button {
+      max-width: 280px;
+    }
+  }
