@@ -1,5 +1,7 @@
+/* 
 import React, { useState, useRef } from "react";
 import "./App.css";
+import "./style.scss"
 import Chat from "./components/Chat";
 import Auth from "./components/Auth";
 import Cookies from "universal-cookie";
@@ -44,3 +46,20 @@ export default function App() {
     </div>
   );
 }
+*/
+
+
+import Login from "./Pages/Login";
+//import Register from "./components/Register";
+import "./style.scss";
+
+function App() {
+  return (
+    <div className="App">
+      <Login />
+      {/*<Register />*/} 
+    </div>
+  )
+}
+
+export default App;

@@ -1,15 +1,21 @@
 import React from "react";
+import addAvatar from "../img/addAvatar.jpg";
 
 const Register = () => {
     return (
         <div className="formContainer">
             <div className="formWrapper">
+                <span className="logo">Shemy Chat</span>
+                <span className="title">Register</span>
                 <form>
-                    <span>Register</span>
                     <input type="text" placeholder="Display Name"/>
                     <input type="email" placeholder="Email"/>
                     <input type="password" placeholder="Password"/>
-                    <input type="file"/>
+                    <input style={{display: "none"}} type="file" id="file"/>
+                    <label htmlFor="file">
+                        <img src={addAvatar} alt="" />
+                        <span>Add an avatar</span>
+                    </label>
                     <button type="submit">Sign Up</button>
                 </form>
                 <p>Already have an account? Login</p>
@@ -17,3 +23,4 @@ const Register = () => {
         </div>
     );
 };
+export default Register;
