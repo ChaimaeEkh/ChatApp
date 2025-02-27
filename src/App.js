@@ -49,14 +49,16 @@ export default function App() {
 */
 
 
-import Login from "./Pages/Login";
+//import Login from "./Pages/Login";
+import Home from "./Pages/Home";
 //import Register from "./components/Register";
 import "./style.scss";
 
 function App() {
   return (
     <div className="App">
-      <Login />
+     
+      <Home />
       {/*<Register />*/} 
     </div>
   )
