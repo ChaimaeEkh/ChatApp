@@ -3,7 +3,7 @@ import Message from './Message'
 
 const Messages = () => {
   return (
-    <div classNaMe='Messages'>
+    <div className='messages'>
       <Message />
       <Message />
       <Message />
