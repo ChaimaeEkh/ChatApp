@@ -50,9 +50,9 @@ export default function App() {
 
 
 import Login from "./Pages/Login";
-//import Home from "./Pages/Home";
+import Home from "./Pages/Home";
 import Register from "./Pages/Register";
-import {BrowserRouter, Routes, Route} from "react-router-dom";
+import {BrowserRouter, Routes, Route, Navigate} from "react-router-dom";
 import "./style.scss";
 
 function App() {
@@ -60,8 +60,10 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
+          <Route path="/" element={<Navigate to="/login" />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/home" element={<Home />} />
         </Routes>
       </BrowserRouter>
     </div>
