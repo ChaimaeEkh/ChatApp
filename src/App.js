@@ -49,19 +49,25 @@ export default function App() {
 */
 
 
-//import Login from "./Pages/Login";
-import Home from "./Pages/Home";
-//import Register from "./components/Register";
+import Login from "./Pages/Login";
+//import Home from "./Pages/Home";
+import Register from "./Pages/Register";
+import {BrowserRouter, Routes, Route} from "react-router-dom";
 import "./style.scss";
 
 function App() {
   return (
     <div className="App">
-     
-      <Home />
-      {/*<Register />*/} 
+      <BrowserRouter>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+        </Routes>
+      </BrowserRouter>
     </div>
-  )
-}
+  );
+  };
+
+  
 
 export default App;
