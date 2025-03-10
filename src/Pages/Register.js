@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import addAvatar from "../img/addAvatar.jpg";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { auth, db, storage } from "../firebase";
+import { auth, db } from "../firebase";
 import { addDoc, collection } from "firebase/firestore"; 
 
 const Register = () => {
@@ -11,11 +11,27 @@ const Register = () => {
         displayName: "",
         email: "",
         password: "",
-        file: null
+        file: null,
+        imageBase64: "" // Stockage de l'image convertie en Base64
     });
 
-    const navigate = useNavigate();  // Initialize navigate
+    const navigate = useNavigate();
     const collectionRef = collection(db, "users");
+
+    // Convertir l'image en Base64
+    const handleFileChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.readAsDataURL(file); // Convertir en Base64
+            reader.onload = () => {
+                setData({ ...data, imageBase64: reader.result });
+            };
+            reader.onerror = (error) => {
+                console.error("Erreur de conversion de l'image :", error);
+            };
+        }
+    };
 
     const handleInput = (e) => {
         setData({ ...data, [e.target.id]: e.target.value });
@@ -32,11 +48,12 @@ const Register = () => {
             await addDoc(collectionRef, {
                 uid: user.uid,
                 displayName: data.displayName,
-                email: data.email
+                email: data.email,
+                password: data.password,
+                avatar: data.imageBase64 
             });
 
             alert("Registration Successful!");
-
             navigate("/login"); 
 
         } catch (error) {
@@ -54,7 +71,7 @@ const Register = () => {
                     <input id="displayName" type="text" placeholder="Display Name" onChange={handleInput} />
                     <input id="email" type="email" placeholder="Email" onChange={handleInput} />
                     <input id="password" type="password" placeholder="Password" onChange={handleInput} />
-                    <input style={{ display: "none" }} type="file" id="file" onChange={(e) => setData({ ...data, file: e.target.files[0] })} />
+                    <input style={{ display: "none" }} type="file" id="file" onChange={handleFileChange} />
                     <label htmlFor="file">
                         <img src={addAvatar} alt="" />
                         <span>Add an avatar</span>
