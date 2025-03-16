@@ -93,7 +93,15 @@ const Message = ({ message }) => {
             e.target.src = "https://via.placeholder.com/40";
           }}
         />
-        <span>just now</span>
+        <span>
+        {message.date?.seconds
+          ? new Date(message.date.seconds * 1000).toLocaleTimeString([], {
+              hour: "2-digit",
+              minute: "2-digit",
+            })
+          : "N/A"}
+      </span>
+
       </div>
       <div className="messageContent">
         <p>{message.text}</p>
