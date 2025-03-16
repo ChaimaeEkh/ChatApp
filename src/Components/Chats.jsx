@@ -42,7 +42,7 @@ const Chats = () => {
             onClick={() => handleSelect(chat.userInfo)}
           >
             <img
-              src={chat.userInfo.avatar || "/default-avatar.png"}
+              src={chat.userInfo.avatar || "https://via.placeholder.com/150"}
               alt="avatar"
             />
             <div className="userChatInfo">
